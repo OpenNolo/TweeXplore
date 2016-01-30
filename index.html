@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>TweeXplorer</title>
+
+  <!-- CSS -->
+  <link href="css/layout.css" rel="stylesheet">
+  <link href="css/button.css" rel="stylesheet">
+  <link href="css/searchBar.css" rel="stylesheet">
+  <link href="css/forceGraph.css" rel="stylesheet">
+  <link href="css/popover.css" rel="stylesheet">
+
+
+  <!-- External Libraries -->
+  <script src="https://code.jquery.com/jquery-2.1.4.js"></script>
+  <script src="http://d3js.org/d3.v3.min.js"></script>
+
+
+  <!-- JavaScripts files -->
+  <script src="js/function.js"></script>
+  <script src="js/ForceGraph.js"></script>
+  <!--script src="php/getTweetsById.php"></script-->
+
+  <!--Bootsrap Lifraries -->
+  <script src="js/bootstrap.min.js"></script>
+  <link href="css/bootstrap.min.css" rel="stylesheet">
+
+</head>
+
+<body>
+
+  <div id='top_view'>
+    <div id='force_graph'></div>
+    <div id='controls_panel'>
+      <button id='link_mentioners' type="submit" onclick="setAction('link_mentioners')" class="myButton link_mentioners" onmouseover='showPopover(this)' onmouseout='hidePopover(this)' data-toggle="popover" title="Link Mentioner Function" data-placement="left" data-content="Double-click on a Profile Node to link the most recent Profiles that have mentioned it.">Link Mentioners</button>
+
+      <input type="text" id="number_mentioners_input" onmouseover='showPopover(this)' onmouseout='hidePopover(this)' data-toggle="popover" title="Max. Mentioners to Link" data-placement="left" data-content="Insert the max. number of Profiles that you want to link at every activation of the Link Mentioner function." />
+
+      <button type="submit" onclick="setAction('link_retweetters')" class="myButton link_retweetters" onmouseover='showPopover(this)' onmouseout='hidePopover(this)' data-toggle="popover" title="Link Retweetter Function" data-placement="left" data-content="Double-click on a Profile Node to link the Profiles that have Retweetted its last Tweet.">Link Retweetters</button>
+
+      <input type="text" id="number_retweetters_input" onmouseover='showPopover(this)' onmouseout='hidePopover(this)' data-toggle="popover" title="Max. Retweetters to Link" data-placement="left" data-content="Insert the max. number of Profiles that you want to link at every activation of the Link Retweetter function."/>
+
+      <button type="submit" onclick="setAction('delete_cascade')" class="myButton delete_cascade" onmouseover='showPopover(this)' onmouseout='hidePopover(this)' data-toggle="popover" title="Delete Node in Cascade" data-placement="left" data-content="Double-click on a Profile Node if you wanna delete it removing also all the Nodes generated from it and their descendents.">Cascade Delete</button>
+
+      <button type="submit" onclick="setAction('delete')" class="myButton delete" onmouseover='showPopover(this)' onmouseout='hidePopover(this)' data-toggle="popover" title="Delete Single Node" data-placement="left" data-content="Double-click on a Profile Node if you wanna delete it leaving all the Nodes generated from it.">Delete</button>
+
+      <button type="submit" onclick="resizeForceGraph(+250)" class="myButton" onmouseover='showPopover(this)' onmouseout='hidePopover(this)' data-toggle="popover" title="Zoom Out" data-placement="left" data-content="Too many circles?">-</button>
+
+      <button type="submit" onclick="resizeForceGraph(-250)" class="myButton" onmouseover='showPopover(this)' onmouseout='hidePopover(this)' data-toggle="popover" title="Zoom In" data-placement="left" data-content="Wanna get closer?">+</button>
+
+      <button type="submit" onclick="downloadDataset()" class="myButton" onmouseover='showPopover(this)' onmouseout='hidePopover(this)' data-toggle="popover" title="Generate Datasets Function" data-placement="left" data-content="Generate the Dataset containing all the Twitter Profiles of the present Nodes and the Dataset containing all the Tweets that took part in the generation of the current visible Network.">Generate Datasets</button>
+    </div>
+  </div>
+  <div id='search_bar'>
+    <div id='logo'>
+      <img class="img-responsive img-border img-left" src="img/logo.png" alt="">
+    </div>
+    <form id='search' class="searchform cf" onsubmit="return false;" data-toggle="popover" title="Search Function" data-placement="right" data-content="Put the screen name of the Twitter Profile that you want to add, the screen name is the name after the @ (ex.: the screen name of @BarackObama is BarackObama).">
+      <input type="text" id="user_input">
+      <button type="submit" onclick="getUserByScreenName()" >Search</button>
+    </form>
+  </div>
+
+  <script type="text/javascript">
+
+    var forceGraph = new ForceGraph('#force_graph');
+
+  </script>
+
+</body>
+
+</html>

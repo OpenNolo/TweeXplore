@@ -1,0 +1,45 @@
+.node {
+  cursor: -webkit-grab;
+  cursor: -moz-grab;
+}
+
+.node:active {
+  cursor: -webkit-grabbing;
+  cursor: -moz-grabbing;
+
+}
+
+.node circle {
+  stroke: #3aaae8;
+  stroke-width: 5px;
+  fill: #3aaae8;
+}
+
+.node circle:hover {
+  stroke: #ef8a62;
+}
+
+.node.expanded circle {
+  stroke: black;
+  stroke-width: 5px;
+  fill: #3aaae8;
+}
+
+.avatar-text{
+  font-family: arial;
+  font-size: 16px;
+}
+
+.link {
+  stroke: #999;
+  stroke-width:4;
+}
+
+.link.mention {
+  stroke: #f1a340;
+}
+
+.link.retweet {
+  stroke: #998ec3;
+}
+
